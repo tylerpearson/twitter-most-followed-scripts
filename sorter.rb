@@ -1,0 +1,95 @@
+require 'twitter'
+require 'colored'
+require 'pp'
+require 'CSV'
+require 'json'
+require 'fileutils'
+
+
+# helper methods
+def load_user_lib(filename)
+  JSON.parse(IO.read(filename))
+end
+
+
+# Twitter
+client = Twitter::REST::Client.new do |config|
+  config.consumer_key        = "jW3u9tE1MRWkkdmzlXVLIw"
+  config.consumer_secret     = "I3cl1yfp3QbW4KWw1zNuYBu85owDmSITB82yxPc8nE"
+  config.access_token        = "18587625-RmkLJb0UH8TB2oT7NRm8tAeVYiGNoriVURcWgO54"
+  config.access_token_secret = "ibkeM3gif7nNZfB6HwwLezqfGvVwHRI7UIv2ZCGNs"
+end
+
+
+GROUP = "carrie-peeps"
+
+
+# Load information needed for calculation
+following = load_user_lib("dumps/#{GROUP}.json") # load the raw data
+list = load_user_lib("lists/#{GROUP}.json") # load the information about the list
+
+
+# Calculate the most followed people from the raw data
+all_friends  = following.sort_by { |username, follow_count| follow_count }.reverse[0,1000]
+
+
+# Get information from Twitter about the followees
+friends_array = []
+
+all_friends.each_with_index do |friend, index|
+   friends_array << friend.first.to_i
+end
+
+friends_info = client.users(friends_array)
+
+
+# Save all the followees info to a file (in case we need it later)
+File.open("users_info/#{GROUP}.json","w") do |f|
+  f.write(friends_info.map { |o| Hash[o] }.to_json)
+end
+
+
+# Set up pretty results
+
+md_doc = ""
+json_hash = Hash.new()
+
+all_friends.each_with_index do |friend, index|
+  friend_info = friends_info.select {|k| k["id"] == friend.first.to_i}.first
+  next if friend_info == nil
+
+  # Markdown info
+  md_result = "#{index + 1}. [@#{friend_info.screen_name}](http://twitter.com/#{friend_info.screen_name}) -- (#{friend.last} of #{list.size})\n"
+  puts md_result
+  md_doc << md_result
+
+  # JSON info
+  if json_hash[friend.last.to_i] == nil
+    json_hash[friend.last.to_i] = []
+  end
+
+  json_hash[friend.last.to_i] << {
+    id: index,
+    twitter_id: friend_info.id,
+    username: friend_info.screen_name,
+    name: friend_info.name,
+    location: friend_info.location,
+    description: friend_info.description,
+    url: friend_info.url,
+    verified: friend_info.verified,
+    created_at: friend_info.created_at,
+    image_url: friend_info.profile_image_url
+  }
+end
+
+
+File.open("results/#{GROUP}.md","w") do |f|
+  f.write(md_doc)
+end
+
+json_results = {"following" => []}
+json_hash.map { |k, v| json_results["following"] << {:following_count => k, :accounts => v} }
+
+File.open("results/#{GROUP}-data.json","w") do |f|
+  f.write(json_results.to_json)
+end
