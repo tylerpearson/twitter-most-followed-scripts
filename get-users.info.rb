@@ -30,5 +30,5 @@ grabbed_info = client.users(list)
 
 # Save all the list members info to a file in case we need it later
 File.open("users_info/#{GROUP}.json","w") do |f|
-  f.write(friends_info.map { |o| Hash[o] }.to_json)
+  f.write(grabbed_info.map { |o| Hash[o] }.to_json)
 end
