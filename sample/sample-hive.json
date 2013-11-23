@@ -1,0 +1,65 @@
+[
+   {
+      "followers":[
+
+      ],
+      "username":"colleenmcenaney"
+   },
+   {
+      "followers":[
+        "SamSifton"
+      ],
+      "username":"carr2n"
+   },
+   {
+      "followers":[
+    "carr2n",
+    "nytkeller"
+      ],
+      "username":"nycjim"
+   },
+   {
+      "followers":[
+        "nycjim"
+      ],
+      "username":"SamSifton"
+   },
+   {
+      "followers":[
+        "colleenmcenaney",
+        "carr2n",
+        "SamSifton",
+        "nycjim"
+      ],
+      "username":"bryanstelter"
+   },
+   {
+      "followers":[
+        "colleenmcenaney",
+        "carr2n",
+        "SamSifton",
+        "nycjim",
+        "fivethirtyeight"
+      ],
+      "username":"nytkeller"
+   },
+   {
+      "followers":[
+
+      ],
+      "username":"fivethirtyeight"
+   },
+   {
+      "followers":[
+
+      ],
+      "username":"mkheller"
+   },
+   {
+      "followers":[
+        "fivethirtyeight",
+        "mkheller"
+      ],
+      "username":"JillAbramson"
+   }
+]
