@@ -19,7 +19,7 @@ def load_user_lib(filename)
 end
 
 
-GROUP = "nmc-ers"
+GROUP = "nyt-journalists"
 
 accounts_to_check = load_user_lib("lists/#{GROUP}.json")
 
