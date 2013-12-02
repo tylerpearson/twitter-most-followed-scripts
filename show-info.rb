@@ -30,7 +30,7 @@ members_list = load_user_lib("lists/#{GROUP}.json")
 relationships_list = load_user_lib("relationships/#{GROUP}.json")
 users_data = load_user_lib("list-members-info/#{GROUP}.json")
 
-# store the followers information in an array
+# create an array to store the data we are generating
 follower_data = []
 
 # loop through each member of the list
@@ -55,8 +55,8 @@ members_list.each_with_index do |list_member, index|
 
     # add the information for the list member to the full data
     follower_data << {
-        :username => list_member_info['screen_name'],
-        :followers => peeps_following
+        :username => list_member_info['screen_name'], # add the list member's username
+        :followers => peeps_following # add the array of people following them. If no one is, this will be empty
       }
 end
 
