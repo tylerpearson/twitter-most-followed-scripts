@@ -1,0 +1,39 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    addressable (2.3.5)
+    atomic (1.1.15)
+    buftok (0.2.0)
+    colored (1.2)
+    equalizer (0.0.9)
+    faraday (0.9.0)
+      multipart-post (>= 1.2, < 3)
+    http (0.5.0)
+      http_parser.rb
+    http_parser.rb (0.6.0)
+    json (1.8.1)
+    memoizable (0.4.0)
+      thread_safe (~> 0.1.3)
+    multipart-post (2.0.0)
+    naught (1.0.0)
+    simple_oauth (0.2.0)
+    thread_safe (0.1.3)
+      atomic
+    twitter (5.7.1)
+      addressable (~> 2.3)
+      buftok (~> 0.2.0)
+      equalizer (~> 0.0.9)
+      faraday (~> 0.9.0)
+      http (~> 0.5.0)
+      http_parser.rb (~> 0.6.0)
+      json (~> 1.8)
+      memoizable (~> 0.4.0)
+      naught (~> 1.0)
+      simple_oauth (~> 0.2.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  colored
+  twitter
