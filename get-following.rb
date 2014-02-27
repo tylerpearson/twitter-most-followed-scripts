@@ -7,10 +7,10 @@ require "net/http"
 require "uri"
 
 client = Twitter::REST::Client.new do |config|
-  config.consumer_key        = "jW3u9tE1MRWkkdmzlXVLIw"
-  config.consumer_secret     = "I3cl1yfp3QbW4KWw1zNuYBu85owDmSITB82yxPc8nE"
-  config.access_token        = "18587625-RmkLJb0UH8TB2oT7NRm8tAeVYiGNoriVURcWgO54"
-  config.access_token_secret = "ibkeM3gif7nNZfB6HwwLezqfGvVwHRI7UIv2ZCGNs"
+  config.consumer_key        = "XXXX"
+  config.consumer_secret     = "XXXX"
+  config.access_token        = "XXXX"
+  config.access_token_secret = "XXXX"
 end
 
 def load_user_lib(filename)
