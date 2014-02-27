@@ -35,3 +35,8 @@ Here are some results shown through [Hifi](http://gethifi.com) templates.
 * [Canadian 2014 Winter Olympians](http://twitter.newmediacampaigns.com/who-the-canadian-2014-winter-olympians-follow-on-twitter)
 
 ![Screenshot](http://i.imgur.com/uZ3njN3.png)
+
+
+## License
+
+MIT.
