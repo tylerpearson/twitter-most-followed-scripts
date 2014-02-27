@@ -21,7 +21,7 @@ client = Twitter::REST::Client.new do |config|
 end
 
 
-GROUP = "carrie-peeps"
+GROUP = "us-olympics"
 
 
 # Load information needed for calculation

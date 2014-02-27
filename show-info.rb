@@ -60,10 +60,13 @@ members_list.each_with_index do |list_member, index|
       }
 end
 
-
 #pp follower_data
 
+# sort the data
+follower_data.sort! { |a,b| a[:followers].size <=> b[:followers].size }
+
+
 # save it to a file
-File.open("hive-dumps/#{GROUP}.json","w") do |f|
+File.open("hive-dumps/#{GROUP}-sorted.json","w") do |f|
   f.write(follower_data.to_json)
 end

@@ -20,7 +20,7 @@ client = Twitter::REST::Client.new do |config|
   config.access_token_secret = "ibkeM3gif7nNZfB6HwwLezqfGvVwHRI7UIv2ZCGNs"
 end
 
-GROUP = "nyt-journalists"
+GROUP = "us-olympics"
 
 # get the list that we are using
 list = load_user_lib("lists/#{GROUP}.json") # load the information about the list

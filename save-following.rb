@@ -13,26 +13,14 @@ client = Twitter::REST::Client.new do |config|
   config.access_token_secret = "ibkeM3gif7nNZfB6HwwLezqfGvVwHRI7UIv2ZCGNs"
 end
 
-
 def load_user_lib(filename)
   JSON.parse(IO.read(filename))
 end
 
-# def dribbble_username_conversion(username)
-#   response = JSON.parse(Net::HTTP.get_response("api.dribbble.com","/players/#{account_username}").body)
 
-#   if response['twitter_screen_name'] == nil
-#     nil
-#   else
-#     response['twitter_screen_name']
-#   end
-# end
-
-
-GROUP = "wapo-2"
+GROUP = "ca-olympics"
 
 accounts_to_check = load_user_lib("lists/#{GROUP}.json")
-
 
 MAX_ATTEMPTS = 20
 
@@ -47,15 +35,6 @@ puts "This should finish at #{estimated_time_finished}".blue
 # check each account
 accounts_to_check.each_with_index do |account_username, account_index|
   num_attempts = 0
-
-  # Dribbble username conversion
-  # response = JSON.parse(Net::HTTP.get_response("api.dribbble.com","/players/#{account_username}").body)
-
-  # if response['twitter_screen_name'] == nil
-  #   next
-  # else
-  #   account_username = response['twitter_screen_name']
-  # end
 
   puts "#{account_index + 1} of #{accounts_to_check.size}: #{account_username}".green
 

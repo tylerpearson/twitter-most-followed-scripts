@@ -1,1 +1,11 @@
-
+d3/
+dumps/*
+extra/
+hive-dumps/
+list-members-info/*
+lists/*
+relationships/*
+results/*
+sample/
+users_info/*
+sources.md

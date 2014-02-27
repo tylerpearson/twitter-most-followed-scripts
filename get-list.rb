@@ -13,7 +13,7 @@ client = Twitter::REST::Client.new do |config|
 end
 
 
-list_members = client.list_members('https://twitter.com/codeguy/new-media-campaigns')
+list_members = client.list_members('https://twitter.com/usolympic/london2012')
 
 list_members_array = []
 
@@ -21,6 +21,6 @@ list_members.each_with_index do |member, index|
   list_members_array << member.id
 end
 
-File.open("lists/nmc-ers.json","w") do |f|
+File.open("lists/us-olympics-summer.json","w") do |f|
   f.write(list_members_array.to_json)
 end
