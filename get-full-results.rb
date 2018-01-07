@@ -79,7 +79,7 @@ all_friends  = following.sort_by { |username, follow_count| follow_count }.rever
 # Get information from Twitter about the followees
 friends_array = []
 
-all_friends.each_with_index do |friend, index|
+all_friends.each do |friend|
    friends_array << friend.first.to_i
 end
 
@@ -111,7 +111,10 @@ all_friends.each_with_index do |friend, index|
   }
 end
 
-json_results = {"following" => []}
+json_results = { "list_length" => accounts_to_check.size,
+                 "finished_at_formatted" => DateTime.now.strftime("%b %d %Y"),
+                 "following"   => [] }
+
 following_results.map { |k, v| json_results["following"] << {following_count: k, accounts: v} }
 
 s3 = Aws::S3::Resource.new(region: 'us-east-1')

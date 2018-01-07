@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+set -e
+
+echo "Building image..."
+docker build -t tylerpearson/twitter-most-followed-scripts:latest .
+
+echo "Pushing to dockerhub..."
+docker push tylerpearson/twitter-most-followed-scripts:latest
