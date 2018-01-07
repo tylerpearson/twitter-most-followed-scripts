@@ -4,7 +4,7 @@
 
 First find a Twitter list for accounts you want to analyze. For example, the New Yorks Times maintains [a list of NYT journalists](https://twitter.com/nytimes/lists/nyt-journalists) on their official Twitter account. For this example, the username is `nytimes` and the list name is `nyt-journalists`.
 
-Next, in the .env file, replace the sample variables from `.env.example` with the ones you want to use.
+Next, in the `.env` file, replace the sample variables from `.env.example` with the ones you want to use.
 
 To get Twitter keys, visit https://apps.twitter.com/.
 
@@ -21,7 +21,7 @@ AWS_ACCESS_KEY_ID=xxx # AWS access keys that have permission to upload to the bu
 AWS_SECRET_ACCESS_KEY=xxx
 ```
 
-Build the container with `docker build -t twitter-most-followed-scripts .` or use the container that is already built at https://hub.docker.com/r/tylerpearson/twitter-most-followed-scripts/.
+Build the container with `docker build -t twitter-most-followed-scripts .` or use the container that is already built at [tylerpearson/twitter-most-followed-scripts:latest](https://hub.docker.com/r/tylerpearson/twitter-most-followed-scripts/).
 
 Pass the username and list name as args to run the docker container:
 
