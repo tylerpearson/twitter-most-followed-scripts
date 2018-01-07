@@ -14,14 +14,13 @@ end
 
 # Twitter
 client = Twitter::REST::Client.new do |config|
-  config.consumer_key        = "XXXX"
-  config.consumer_secret     = "XXXX"
-  config.access_token        = "XXXX"
-  config.access_token_secret = "XXXX"
+  config.consumer_key        = ENV['TWITTER_CONSUMER_KEY']
+  config.consumer_secret     = ENV['TWITTER_CONSUMER_SECRET']
+  config.access_token        = ENV['TWITTER_ACCESS_TOKEN']
+  config.access_token_secret = ENV['TWITTER_ACCESS_TOKEN_SECRET']
 end
 
-
-GROUP = "us-olympics"
+GROUP = "nytimes"
 
 
 # Load information needed for calculation
@@ -45,7 +44,7 @@ friends_info = client.users(friends_array)
 
 # Save all the followees info to a file (in case we need it later)
 File.open("users_info/#{GROUP}.json","w") do |f|
-  f.write(friends_info.map { |o| Hash[o] }.to_json)
+  f.write(friends_info.map { |o| o.to_h }.to_json)
 end
 
 
@@ -55,7 +54,7 @@ md_doc = ""
 json_hash = Hash.new()
 
 all_friends.each_with_index do |friend, index|
-  friend_info = friends_info.select {|k| k["id"] == friend.first.to_i}.first
+  friend_info = friends_info.select {|k| k.id == friend.first.to_i}.first
   next if friend_info == nil
 
   # Markdown info
@@ -71,14 +70,14 @@ all_friends.each_with_index do |friend, index|
   json_hash[friend.last.to_i] << {
     id: index,
     twitter_id: friend_info.id,
-    username: friend_info.screen_name,
-    name: friend_info.name,
-    location: friend_info.location,
-    description: friend_info.description,
-    url: friend_info.url,
-    verified: friend_info.verified,
-    created_at: friend_info.created_at,
-    image_url: friend_info.profile_image_url
+    username: friend_info.screen_name.to_s,
+    name: friend_info.name.to_s,
+    location: friend_info.location.to_s,
+    description: friend_info.description.to_s,
+    url: friend_info.url.to_s,
+    verified: friend_info.verified?,
+    created_at: friend_info.created_at.to_s,
+    image_url: friend_info.profile_image_url.to_s
   }
 end
 

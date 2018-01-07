@@ -1,4 +1,4 @@
 source 'https://rubygems.org'
 
-gem 'colored'
 gem 'twitter'
+gem 'aws-sdk', '~> 3'

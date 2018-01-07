@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 require 'twitter'
 require 'colored'
 require 'pp'
@@ -7,10 +9,10 @@ require "net/http"
 require "uri"
 
 client = Twitter::REST::Client.new do |config|
-  config.consumer_key        = "XXXX"
-  config.consumer_secret     = "XXXX"
-  config.access_token        = "XXXX"
-  config.access_token_secret = "XXXX"
+  config.consumer_key        = ENV['TWITTER_CONSUMER_KEY']
+  config.consumer_secret     = ENV['TWITTER_CONSUMER_SECRET']
+  config.access_token        = ENV['TWITTER_ACCESS_TOKEN']
+  config.access_token_secret = ENV['TWITTER_ACCESS_TOKEN_SECRET']
 end
 
 def load_user_lib(filename)
@@ -18,7 +20,7 @@ def load_user_lib(filename)
 end
 
 
-GROUP = "ca-olympics"
+GROUP = "nytimes"
 
 accounts_to_check = load_user_lib("lists/#{GROUP}.json")
 
@@ -31,6 +33,8 @@ friends_array = []
 # give some info on when this thing should finish
 estimated_time_finished = (Time.now + accounts_to_check.size * 65).strftime("%I:%M%p")
 puts "This should finish at #{estimated_time_finished}".blue
+
+puts accounts_to_check.size
 
 # check each account
 accounts_to_check.each_with_index do |account_username, account_index|

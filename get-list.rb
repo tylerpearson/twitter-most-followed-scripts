@@ -1,26 +1,23 @@
 require 'twitter'
-require 'colored'
-require 'pp'
-require 'CSV'
-require 'json'
-
 
 client = Twitter::REST::Client.new do |config|
-  config.consumer_key        = "XXXX"
-  config.consumer_secret     = "XXXX"
-  config.access_token        = "XXXX"
-  config.access_token_secret = "XXXX"
+  config.consumer_key        = ENV['TWITTER_CONSUMER_KEY']
+  config.consumer_secret     = ENV['TWITTER_CONSUMER_SECRET']
+  config.access_token        = ENV['TWITTER_ACCESS_TOKEN']
+  config.access_token_secret = ENV['TWITTER_ACCESS_TOKEN_SECRET']
 end
 
 
-list_members = client.list_members('https://twitter.com/usolympic/london2012')
+list_members = client.list_members('nytimes', 'nyt-journalists')
 
 list_members_array = []
 
-list_members.each_with_index do |member, index|
+list_members.each do |member|
   list_members_array << member.id
 end
 
-File.open("lists/us-olympics-summer.json","w") do |f|
-  f.write(list_members_array.to_json)
+File.open("lists/nytimes.json","w") do |f|
+  if f.write(list_member_ids.to_json)
+    puts "Downloaded list"
+  end
 end
